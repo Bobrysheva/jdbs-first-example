@@ -15,17 +15,17 @@ import java.util.List;
 @Repository
 public class FindBookByIdImpl implements FindBookById {
     @Autowired
-    private final DataSource dataSource1;
+    private final DataSource dataSource;
 
-    public FindBookByIdImpl(DataSource dataSource) {
-        this.dataSource1 = dataSource;
+    public FindBookByIdImpl(DataSource dataSource1) {
+        this.dataSource = dataSource1;
     }
 
     @Override
     public String foundBooks(Long id) {
         String foundBooks;
-        String SQL_findBookById = "select * from books where id = " + id;
-        try (Connection connection = dataSource1.getConnection();
+        String SQL_findBookById = "select * from books where id = " + id + ";";
+        try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet1 = statement.executeQuery(SQL_findBookById)) {
              Book book = convertRowToBook1(resultSet1);
