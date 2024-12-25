@@ -21,4 +21,16 @@ public class BookController {
     public List<Book> getAllBooks() {
         return bookRepository.findAllBooks();
     }
+
+//    @Autowired
+//    private FindBookById findBookById;
+//
+//    public BookController(FindBookById findBookById) {
+//        this.findBookById = findBookById;
+//    }
+//
+//    @GetMapping("/books/{id}")
+//    public String foundBooks(@PathVariable Long id) {
+//        return findBookById.foundBooks(id);
+//    }
 }

@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BookController1 {
-    @Autowired
-    private FindBookById findBookById;
+        @Autowired
+        private FindBookById findBookById;
 
-    public BookController1(FindBookById findBookById) {
-        this.findBookById = findBookById;
-    }
+        public BookController1(FindBookById findBookById) {
+            this.findBookById = findBookById;
+        }
 
-    @GetMapping("/books/{id}")
-    public String foundBooks(@PathVariable Long id) {
-        return findBookById.foundBooks(id);
-    }
+        @GetMapping("/books/{id}")
+        public String foundBooks(@PathVariable Long id) {
+            return findBookById.foundBooks(id);
+        }
 }

@@ -23,18 +23,22 @@ public class FindBookByIdImpl implements FindBookById {
 
     @Override
     public String foundBooks(Long id) {
-        String foundBooks;
+        String foundBooks = null;
         String SQL_findBookById = "select * from books where id = " + id + ";";
+
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet1 = statement.executeQuery(SQL_findBookById)) {
-             Book book = convertRowToBook1(resultSet1);
-             foundBooks = String.valueOf(book);
+            while (resultSet1.next()) {
+                Book book = convertRowToBook1(resultSet1);
+                foundBooks = book.toString();
+            }
+            return foundBooks;
         } catch (SQLException e) {
-            throw new IllegalStateException(e);
+            throw new RuntimeException(e);
         }
-        return foundBooks;
     }
+
     private Book convertRowToBook1(ResultSet resultSet1) throws SQLException {
         Long id = resultSet1.getLong("id");
         String name = resultSet1.getString("name");
