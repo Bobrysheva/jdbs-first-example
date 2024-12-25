@@ -45,4 +45,28 @@ public class BookRepositoryImpl implements BookRepository {
         String name = resultSet.getString("name");
         return new Book(id, name);
     }
+
+    @Override
+    public String foundBooks(Long id) {
+        String foundBooks = null;
+        String SQL_findBookById = "select * from books where id = " + id + ";";
+
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet1 = statement.executeQuery(SQL_findBookById)) {
+            while (resultSet1.next()) {
+                Book book = convertRowToBook1(resultSet1);
+                foundBooks = book.toString();
+            }
+            return foundBooks;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Book convertRowToBook1(ResultSet resultSet1) throws SQLException {
+        Long id = resultSet1.getLong("id");
+        String name = resultSet1.getString("name");
+        return new Book(id, name);
+    }
 }

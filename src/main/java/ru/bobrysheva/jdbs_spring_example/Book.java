@@ -3,23 +3,28 @@ package ru.bobrysheva.jdbs_spring_example;
 public class Book {
     private Long id;
     private String name;
-    public Book (Long id, String name) {
+
+    public Book(Long id, String name) {
         this.id = id;
         this.name = name;
     }
-    public Book () {
+
+    public Book() {
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public void setId (Long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
-    public void setName (String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
 
