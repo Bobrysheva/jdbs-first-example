@@ -11,7 +11,6 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-//    private BookRepository bookRepository;
     private BookService bookService;
 
     @GetMapping("/books")
