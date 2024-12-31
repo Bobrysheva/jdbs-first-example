@@ -11,15 +11,16 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+//    private BookRepository bookRepository;
+    private BookService bookService;
 
-    @GetMapping("/books/all")
+    @GetMapping("/books")
     public List<Book> getAllBooks() {
-        return bookRepository.findAllBooks();
+        return bookService.findAllBooks();
     }
 
     @GetMapping("/books/{id}")
     public String foundBooks(@PathVariable Long id) {
-        return bookRepository.foundBooks(id);
+        return bookService.foundBooks(id);
     }
 }
